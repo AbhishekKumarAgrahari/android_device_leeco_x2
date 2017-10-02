@@ -156,6 +156,15 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libjni_livedisplay
 
+PRODUCT_PACKAGES += \
+    qdcm_calib_data_le_x2_mdss_dsi_sharp_qhd_dualdsi_cmd.xml \
+    qdcm_calib_data_le_x2_mdss_dsi_truly_qhd_dualdsi_cmd_pvt.xml \
+    qdcm_calib_data_mdss_dsi_sharp_qhd_dualdsi_cmd.xml
+
+# Doze mode
+PRODUCT_PACKAGES += \
+    Doze
+
 # For android_filesystem_config.h
 PRODUCT_PACKAGES += \
     fs_config_files
