@@ -39,6 +39,15 @@ HWUI_COMPILE_FOR_PERF := true
 # Snapdragon LLVM
 TARGET_USE_SDCLANG := true
 
+# Enable dexpreopt to speed boot time
+ifeq ($(HOST_OS),linux)
+  ifeq ($(call match-word-in-list,$(TARGET_BUILD_VARIANT),user),true)
+    ifeq ($(WITH_DEXPREOPT),)
+      WITH_DEXPREOPT := true
+    endif
+  endif
+endif
+
 ifneq ($(HOST_OS),darwin)
 SDCLANG := true
 SDCLANG_PATH := prebuilts/clang/linux-x86/host/sdclang-3.8/bin
@@ -47,6 +56,8 @@ endif
 
 STRICT_ALIASING := true
 CLANG_O3 := true
+TARGET_GCC_VERSION_ARM64 := 6.x
+
 
 # Architecture
 TARGET_ARCH := arm64
@@ -63,7 +74,6 @@ TARGET_2ND_CPU_VARIANT := kryo
 
 ENABLE_CPUSETS := true
 TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
-ENABLE_SCHEDBOOST := true
 TARGET_USES_QCOM_BSP := true
 TARGET_USES_64_BIT_BINDER := true
 
@@ -77,7 +87,7 @@ BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 TARGET_KERNEL_APPEND_DTB := true
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
-TARGET_KERNEL_SOURCE := kernel/leeco/n7.1
+TARGET_KERNEL_SOURCE := /root/kernel/bsi/
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 TARGET_COMPILE_WITH_MSM_KERNEL := true
 
