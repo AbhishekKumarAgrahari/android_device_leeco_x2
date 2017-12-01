@@ -150,6 +150,9 @@ persist.timed.enable=true
 
 # Wifi
 wifi.interface=wlan0
+# QCOM
+ro.frp.pst=/dev/block/bootdevice/by-name/frp
+drm.service.enabled=true
 
 # HFP
 bt.max.hfpclient.connections=1
