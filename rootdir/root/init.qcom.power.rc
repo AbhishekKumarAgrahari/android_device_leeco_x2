@@ -278,3 +278,14 @@ on property:dev.bootcomplete=1
     chmod 0644 /d/rpm_stats
     chmod 0644 /d/dpm_master_stats
 
+    rm /data/system/perfd/default_values
+    write /sys/block/mmcblk0/queue/scheduler maple
+    write /sys/block/mmcblk0/queue/read_ahead_kb 512
+    write /sys/block/mmcblk0/queue/iosched/sync_read_expire 350
+    write /sys/block/mmcblk0/queue/iosched/sync_write_expire 550
+    write /sys/block/mmcblk0/queue/iosched/async_read_expire 250
+    write /sys/block/mmcblk0/queue/iosched/async_write_expire 450
+    write /sys/block/mmcblk0/queue/iosched/fifo_batch 16
+    write /sys/block/mmcblk0/queue/iosched/writes_starved 4
+    write /sys/block/mmcblk0/queue/iosched/sleep_latency_multiple 10
+
