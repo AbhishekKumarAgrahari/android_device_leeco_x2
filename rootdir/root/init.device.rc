@@ -135,6 +135,62 @@ on property:dev.bootcomplete=1
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq 2150400
     write /sys/class/kgsl/kgsl-3d0/max_gpuclk 624000000
 
+ # Configure governor settings for little cluster
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "blu_active"
+    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/above_hispeed_delay 20000
+    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/go_hispeed_load 80
+    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/timer_rate 50000
+    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/hispeed_freq 1728000
+    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/io_is_busy 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/target_loads 80
+    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/min_sample_time 80000
+    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/timer_slack 30000
+    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/fastlane 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/fastlane_threshold 50
+    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/max_freq_hysteresis 100000
+    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/low_load_down_threshold 5
+    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/input_boost_freq 1497600
+    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/boostpulse_duration 1000000
+
+
+    # Configure governor settings for big cluster
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "blu_active"
+    write /sys/devices/system/cpu/cpu2/cpufreq/blu_active/above_hispeed_delay "20000"
+    write /sys/devices/system/cpu/cpu2/cpufreq/blu_active/go_hispeed_load 80
+    write /sys/devices/system/cpu/cpu2/cpufreq/blu_active/timer_rate 50000
+    write /sys/devices/system/cpu/cpu2/cpufreq/blu_active/hispeed_freq 2265600
+    write /sys/devices/system/cpu/cpu2/cpufreq/blu_active/io_is_busy 1
+    write /sys/devices/system/cpu/cpu2/cpufreq/blu_active/target_loads "85 1500000:90 1800000:70 2100000:95"
+    write /sys/devices/system/cpu/cpu2/cpufreq/blu_active/min_sample_time 80000
+    write /sys/devices/system/cpu/cpu2/cpufreq/blu_active/timer_slack 30000
+    write /sys/devices/system/cpu/cpu2/cpufreq/blu_active/fastlane 1
+    write /sys/devices/system/cpu/cpu2/cpufreq/blu_active/fastlane_threshold 50
+    write /sys/devices/system/cpu/cpu2/cpufreq/blu_active/max_freq_hysteresis 100000
+    write /sys/devices/system/cpu/cpu2/cpufreq/blu_active/low_load_down_threshold 5
+    write /sys/devices/system/cpu/cpu2/cpufreq/blu_active/input_boost_freq 1497600
+    write /sys/devices/system/cpu/cpu2/cpufreq/blu_active/boostpulse_duration 1000000
+
+   write /sys/module/msm_performance/parameters/touchboost 1
+    write /sys/module/cpu_boost/parameters/input_boost_freq 0:1036800
+    write /sys/module/cpu_boost/parameters/input_boost_freq 1:1036800
+    write /sys/module/cpu_boost/parameters/input_boost_freq 2:1036800
+    write /sys/module/cpu_boost/parameters/input_boost_freq 3:1036800
+    write /sys/module/cpu_boost/parameters/input_boost_ms 500
+
+    write /proc/sys/vm/swappiness 0
+
+    rm /data/system/perfd/default_values
+    write /sys/block/sda/queue/scheduler maple
+    write /sys/block/sda/queue/read_ahead_kb 512
+    write /sys/block/sda/queue/iosched/sync_read_expire 350
+    write /sys/block/sda/queue/iosched/sync_write_expire 550
+    write /sys/block/sda/queue/iosched/async_read_expire 250
+    write /sys/block/sda/queue/iosched/async_write_expire 450
+    write /sys/block/sda/queue/iosched/fifo_batch 16
+    write /sys/block/sda/queue/iosched/writes_starved 4
+    write /sys/block/sda/queue/iosched/sleep_latency_multiple 10
+
+
 on post-fs-data
     # Create directories for Fingerprint
     mkdir /data/misc/stargate 0770 system system
