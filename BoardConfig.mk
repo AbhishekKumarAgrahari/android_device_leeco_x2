@@ -48,12 +48,6 @@ ifeq ($(HOST_OS),linux)
   endif
 endif
 
-ifneq ($(HOST_OS),darwin)
-SDCLANG := true
-SDCLANG_PATH := prebuilts/clang/linux-x86/host/sdclang-3.8/bin
-SDCLANG_LTO_DEFS := device/qcom/common/sdllvm-lto-defs.mk
-endif
-
 STRICT_ALIASING := true
 CLANG_O3 := true
 TARGET_GCC_VERSION_ARM64 := 6.x
@@ -64,13 +58,13 @@ TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
-TARGET_CPU_VARIANT := kryo
+TARGET_CPU_VARIANT := generic
 
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv7-a-neon
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
-TARGET_2ND_CPU_VARIANT := kryo
+TARGET_2ND_CPU_VARIANT := cortex-a53
 
 ENABLE_CPUSETS := true
 TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
@@ -89,7 +83,7 @@ TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_CONFIG := lineage_x2_defconfig
 #TARGET_KERNEL_SOURCE := /root/kernel/blue_bsi/
-TARGET_KERNEL_SOURCE := /root/kernel/blue_bsi_upstream/
+TARGET_KERNEL_SOURCE := kernel/leeco/mam8996
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 TARGET_COMPILE_WITH_MSM_KERNEL := true
 
